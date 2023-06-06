@@ -221,8 +221,29 @@ def main ():
         print("7) Quit")
         choice = int(input())
 
+
+    #   returns all users
+        if choice == 1:
+            print("Looking for users  ...")
+            budgets = session.query(Budget).all()
+            for budget in budgets:
+                print(budget.budgetName)
+
+
+
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
+
+
+
+
+
 
 
 
