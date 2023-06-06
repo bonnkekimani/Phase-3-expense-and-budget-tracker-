@@ -49,61 +49,61 @@ if __name__ == '__main__':
         budgetName = "Alvin's Budget",
         startDate = 1/1/2010,
         endDate = 2/2/2010,
-        limit = 10000
+        limit = 5000
         )
     budget2 = Budget(
         budgetName = "Kai's Budget",
-        startDate = 1/1/2010,
-        endDate = 2/2/2010,
-        limit = 10000
+        startDate = 3/3/2010,
+        endDate = 4/4/2010,
+        limit = 6000
         )
     budget3 = Budget(
         budgetName = "Ethan's Budget",
-        startDate = 1/1/2010,
-        endDate = 2/2/2010,
-        limit = 10000
+        startDate = 5/5/2010,
+        endDate = 6/6/2010,
+        limit = 7000
         )
     budget4 = Budget(
         budgetName = "Noah's Budget",
-        startDate = 1/1/2010,
-        endDate = 2/2/2010,
-        limit = 10000
+        startDate = 7/7/2010,
+        endDate = 8/8/2010,
+        limit = 8000
         )
     budget5 = Budget(
         budgetName = "Sam's Budget",
-        startDate = 1/1/2010,
-        endDate = 2/2/2010,
-        limit = 10000
+        startDate = 9/9/2010,
+        endDate = 10/10/2010,
+        limit = 9000
         )
     budget6 = Budget(
         budgetName = "Emma's Budget",
-        startDate = 1/1/2010,
-        endDate = 2/2/2010,
+        startDate = 11/11/2010,
+        endDate = 12/12/2010,
         limit = 10000
         )
     budget7 = Budget(
         budgetName = "Ava's Budget",
-        startDate = 1/1/2010,
-        endDate = 2/2/2010,
-        limit = 10000
+        startDate = 13/1/2011,
+        endDate = 14/2/2011,
+        limit = 11000
         )
     budget8 = Budget(
         budgetName = "Mia's Budget",
-        startDate = 1/1/2010,
-        endDate = 2/2/2010,
-        limit = 10000
+        startDate = 15/3/2011,
+        endDate = 16/4/2011,
+        limit = 12000
         )
     budget9 = Budget(
         budgetName = "Evelyn's Budget",
-        startDate = 1/1/2010,
-        endDate = 2/2/2010,
-        limit = 10000
+        startDate = 17/5/2011,
+        endDate = 18/6/2011,
+        limit = 13000
         )
     budget10 = Budget(
         budgetName = "Alvin's Budget",
-        startDate = 1/1/2010,
-        endDate = 2/2/2010,
-        limit = 10000
+        startDate = 19/7/2011,
+        endDate = 20/8/2011,
+        limit = 14000
         )
 
     # Create Restaurants(Instances)
