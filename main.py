@@ -4,7 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 # from sqlalchemy.orm import relationship, backref
 from sqlalchemy import ForeignKey, Column, Integer, String 
 from sqlalchemy.orm import sessionmaker
-import datetime 
+# import datetime 
 # create_engine('sqlite://tracker.db')
 Base = declarative_base()
 class Budget(Base):
@@ -14,28 +14,38 @@ class Budget(Base):
     startDate = Column(String())
     endDate = Column(String())
     limit = Column(Integer())
-    # category_id = Column(Integer(), ForeignKey('categories.id'))
-    # reviews = relationship('Category', backref=backref('expense'))
-    # def __repr__(self):
-    #     return f'Category(id = {self.id})'+\
-    #        f'categoryName = {self.categoryName}'+\
+    def __repr__(self):
+        return f'Budget(id = {self.id})'+\
+           f'budgetName= {self.budgetName}'+\
+           f'startDate = {self.startDate}'+\
+           f'endDate  = {self.endDate }'+\
+           f'limit = {self.limit}'+\
+           f'user_id = {self.user_id}'+\
+           f'budget_id = {self.budget_id}'
+           
            
 class User(Base):
     __tablename__ = 'users'
     id = Column (Integer(), primary_key=True)
     userName = Column(String())
-    # def __repr__(self):
-    #     return f'Review(id = {self.id})'+\
-    #        f'rating = {self.rating}'+\
-    #        f'customer_id={self.customer_id}'
+    def __repr__(self):
+        return f'User(id = {self.id})'+\
+           f'userName={self.userName}'
+    
 class Expense(Base):
     __tablename__ = 'expenses'
     id = Column(Integer(), primary_key= True)
     expenseName = Column(String())
-    # reviews = relationship('Review', backref=backref('restaurant'))
-    # def __repr__ (self):
-    #     return f'Restaurant(id = {self.id})'+\
-    #         f'name={self.name}'
+    user_id = Column(Integer(), ForeignKey('users.id'))
+    budget_id = Column(Integer(), ForeignKey('budgets.id'))
+    def __repr__(self):
+        return f'Budget(id = {self.id})'+\
+           f'expenseName= {self.budgetName}'+\
+           f'user_id = {self.user_id}'+\
+           f'budget_id = {self.budget_id}'
+
+
+
 if __name__ == '__main__':
     engine = create_engine('sqlite:///tracker.db')
     Base.metadata.create_all(engine)
@@ -66,7 +76,7 @@ if __name__ == '__main__':
         budgetName = "Noah's Budget",
         startDate = "7/7/2010",
         endDate = "8/8/2010",
-        limit = 8000
+        limit = 8000, 
         )
     budget5 = Budget(
         budgetName = "Sam's Budget",
@@ -107,7 +117,7 @@ if __name__ == '__main__':
 
     # Create Users(Instances)
     user1 = User(
-        userName = "Olivia"
+        userName = "Alvin"
         )
     user2 = User(
         userName = "Olivia"
@@ -139,48 +149,89 @@ if __name__ == '__main__':
     
     # Create Expenses(Instances)
     expense1 = Expense(
-        expenseName = "John"
+        expenseName = "WiFi",
+        user_id = 3,
+        budget_id = 8
         )
     expense2 = Expense(
-        expenseName = "Entertainment"
+        expenseName = "Entertainment",
+        user_id = 5,
+        budget_id = 7
         )
     expense3 = Expense(
-        expenseName = "Electricity"
+        expenseName = "Electricity",
+        user_id = 1,
+        budget_id = 1
         )
     expense4 = Expense(
-        expenseName = "Water"
+        expenseName = "Water",
+        user_id = 10,
+        budget_id = 6
         )
     expense5 = Expense(
-        expenseName = "Transport"
+        expenseName = "Transport",
+        user_id = 4,
+        budget_id = 4
         )
     expense6 = Expense(
-        expenseName = "Groceries"
+        expenseName = "Groceries",
+        user_id = 9,
+        budget_id = 3
         )
     expense7 = Expense(
-        expenseName = "Insurance"
+        expenseName = "Insurance",
+        user_id = 6,
+        budget_id = 5
         )
     expense8 = Expense(
-        expenseName = "Clothings"
+        expenseName = "Clothings",
+        user_id = 8,
+        budget_id = 9
         )
     expense9 = Expense(
-        expenseName = "Savings"
+        expenseName = "Savings",
+        user_id = 2,
+        budget_id = 10
         )
     expense10 = Expense(
-        expenseName = "Vacations"
+        expenseName = "Vacations",
+        user_id = 7,
+        budget_id = 2
         )
 
-   
-   
     session.add_all([budget1,budget2,budget3,budget4,budget5,budget6,budget7,budget8,budget9,budget10])
     session.add_all([user1,user2,user3,user4,user5,user6,user7,user8,user9,user10])
     session.add_all([expense1,expense2,expense3,expense4,expense5,expense6,expense7,expense8,expense9,expense10])
     session.commit()
 
-# #   returns the customer's given name
-#     reviews = session.query(Review).filter(Review.restaurant_id == 1)
-#     for review in reviews:
-#         print("returns the customer's given name")
-#         print (review.customer_id)
+
+def main ():
+    # initialize tracker list
+    trackerList = []
+
+    choice = 0
+    while choice !=7:
+        print("** Tracker List **")
+        print("1) Lookup a user")
+        print("2) Display user")
+        print("3) Lookup Expenses")
+        print("4) Display Expenses")
+        print("5) Lookup budget")
+        print("6) Display budget")
+        print("7) Quit")
+        choice = int(input())
+
+if __name__ == "__main__":
+    main()
+
+
+
+
+#   returns the customer's given name
+    # budgets = session.query(Budget).filter(Budget.user_id == 1)
+    # for budget in budgets:
+    #     print("returns the customer's given name")
+    #     print (budget.user_id)
 
 # #   returns the customer's family name
 #     reviews = session.query(Review).all()
