@@ -20,11 +20,10 @@ class Budget(Base):
         return f'Category(id = {self.id})'+\
            f'categoryName = {self.categoryName}'+\
            
-class Category(Base):
-    __tablename__ = 'categories'
+class User(Base):
+    __tablename__ = 'users'
     id = Column (Integer(), primary_key=True)
-    categoryName = Column(String())
-    Customer_review = Column(String())
+    userName = Column(String())
     def __repr__(self):
         return f'Review(id = {self.id})'+\
            f'rating = {self.rating}'+\
@@ -100,34 +99,44 @@ if __name__ == '__main__':
         limit = 13000
         )
     budget10 = Budget(
-        budgetName = "Alvin's Budget",
+        budgetName = "Olivia's Budget",
         startDate = 19/7/2011,
         endDate = 20/8/2011,
         limit = 14000
         )
 
-    # Create Restaurants(Instances)
-    restaurant1 = Restaurant(
-        Restaurant_Name = "Bistro Bites"
+    # Create Users(Instances)
+    user1 = User(
+        userName = "Olivia"
         )
-    restaurant2 = Restaurant(
-        Restaurant_Name = "Steak House"
+    user2 = User(
+        userName = "Olivia"
         )
-    restaurant3 = Restaurant(
-        Restaurant_Name = "Sushi Sushi"
+    user3 = User(
+        userName = "Mia"
         )
-    restaurant4 = Restaurant(
-        Restaurant_Name = "Pizza Palace"
+    user4 = User(
+        userName = "Noah"
         )
-    restaurant5 = Restaurant(
-        Restaurant_Name = "Burger Bistro"
+    user5 = User(
+        userName = "Ava"
         )
-    restaurant6 = Restaurant(
-        Restaurant_Name = "Tacos Tacos"
+    user6 = User(
+        userName = "Sam"
         )
-    restaurant7 = Restaurant(
-        Restaurant_Name = "Pasta Paradise"
+    user7 = User(
+        userName = "Kai"
         )
+    user8 = User(
+        userName = "Evelyn"
+        )
+    user9 = User(
+        userName = "Ethan"
+        )
+    user10 = User(
+        userName = "Emma"
+        )
+    
     # Create Customers(Instances)
     customer1 = Customer(
         firstName = "John",
