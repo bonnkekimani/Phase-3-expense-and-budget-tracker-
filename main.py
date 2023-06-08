@@ -1,5 +1,5 @@
-# from random import randint, seed
-from sqlalchemy import create_engine
+import sqlite3
+from sqlalchemy import create_engine, func
 from sqlalchemy.ext.declarative import declarative_base
 # from sqlalchemy.orm import relationship, backref
 from sqlalchemy import ForeignKey, Column, Integer, String 
@@ -210,57 +210,71 @@ def main ():
     trackerList = []
 
     choice = 0
-    while choice !=7:
+    while choice !=10:
         print("** Tracker List **")
-        print("1) Lookup a user")
-        print("2) Display user")
+        print("1) Displays all budgetName")
+        print("2) Display first user")
         print("3) Lookup Expenses")
         print("4) Display Expenses")
-        print("5) Lookup budget")
-        print("6) Display budget")
-        print("7) Quit")
+        print("5) Displays average limit")
+        print("6) Displays limit below 10000")
+        print("7) Display limit 10000 and above")
+        print("8) Outputs a list")
+        print("10) Quit")
         choice = int(input())
 
 
-    #   returns all users
+    #   prints all budgetName
         if choice == 1:
-            print("Looking for users  ...")
+            print("Displays all budgetName  ...")
             budgets = session.query(Budget).all()
             for budget in budgets:
                 print(budget.budgetName)
+
+        if choice == 2:
+            print("First users  ...")
+            budgets = session.query(Budget).first()
+            for budget in budgets:
+                print(budget.budgetName)
+    #   Lookup Expenses
+        if choice == 3:
+            print("Fi ...")
+            budgets = session.query(Budget).first()
+            for budget in budgets:
+                print(budget.budgetName)
+
+        #  prints average limit
+        if choice == 5:
+            averageLimit = average_limit = session.query(func.avg(Budget.limit)).scalar()
+            print("**<<Printing average limit>>**")
+            print("THE AVERAGE LIMIT IS" + " " + str(averageLimit))
+
+        #  prints limit below 10000
+        if choice == 6:
+            budgets = session.query(Budget).filter(Budget.limit < 10000)
+            for budget in budgets:
+                print("**<<Printing limit below 10000>>**")
+                print(budget.budgetName)
+    
+        #  prints limit 10000 and above
+        if choice == 7:
+            budgets = session.query(Budget).filter(Budget.limit >= 10000)
+            for budget in budgets:
+                print("**<<Printing limit 10000 and above>>**")
+                print(budget.budgetName)
+        #  Outputs a list
+        if choice == 8:
+            budgets = session.query(Budget).all()
+            budgets.append([])
+            for budget in budgets:
+                print("**<<Printing a list>>**")
+                print(budget)
+    
+    
+        
 
 
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#   returns the customer's given name
-    # budgets = session.query(Budget).filter(Budget.user_id == 1)
-    # for budget in budgets:
-    #     print("returns the customer's given name")
-    #     print (budget.user_id)
-
-# #   returns the customer's family name
-#     reviews = session.query(Review).all()
-#     for review in reviews:
-#         print (review.customer_id)
-   
-# # #    returns the full name of the customer, with the given name and the family name concatenated, Western style.
-#     customers = session.query(Customer).all()
-#     for customer in customers:
-#        print(customer.firstName +' ' +customer.lastName)
 
