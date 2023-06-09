@@ -211,9 +211,9 @@ def main ():
 
     choice = 0
     while choice !=10:
-        print("** Tracker List **")
-        print("1) Displays all budgetName")
-        print("2) Display first user")
+        print("**<<KARIBU||WELCOME TO PESA TRACKER PROGRAM>>**")
+        print("1) Displays all budgetName in budgets")
+        print("2) Display userName in users in Descending order")
         print("3) Lookup Expenses")
         print("4) Display Expenses")
         print("5) Displays average limit")
@@ -226,49 +226,55 @@ def main ():
 
     #   prints all budgetName
         if choice == 1:
-            print("Displays all budgetName  ...")
+            print("Displaying all budgetName  ...")
             budgets = session.query(Budget).all()
             for budget in budgets:
                 print(budget.budgetName)
 
-        if choice == 2:
-            print("First users  ...")
+        elif choice == 2:
+            print("Displaying userName in Descending order  ...")
             budgets = session.query(Budget).first()
             for budget in budgets:
                 print(budget.budgetName)
     #   Lookup Expenses
-        if choice == 3:
+        elif choice == 3:
             print("Fi ...")
             budgets = session.query(Budget).first()
             for budget in budgets:
                 print(budget.budgetName)
 
         #  prints average limit
-        if choice == 5:
+        elif choice == 5:
             averageLimit = average_limit = session.query(func.avg(Budget.limit)).scalar()
             print("**<<Printing average limit>>**")
             print("THE AVERAGE LIMIT IS" + " " + str(averageLimit))
 
         #  prints limit below 10000
-        if choice == 6:
+        elif choice == 6:
             budgets = session.query(Budget).filter(Budget.limit < 10000)
             for budget in budgets:
                 print("**<<Printing limit below 10000>>**")
                 print(budget.budgetName)
     
         #  prints limit 10000 and above
-        if choice == 7:
+        elif choice == 7:
             budgets = session.query(Budget).filter(Budget.limit >= 10000)
             for budget in budgets:
                 print("**<<Printing limit 10000 and above>>**")
                 print(budget.budgetName)
         #  Outputs a list
-        if choice == 8:
-            budgets = session.query(Budget).all()
-            budgets.append([])
-            for budget in budgets:
-                print("**<<Printing a list>>**")
-                print(budget)
+        # if choice == 8:
+        #     budgets = session.query(Budget).all()
+        #     budgets.append([])
+        #     for budget in budgets:
+        #         print("**<<Printing a list>>**")
+        #         print(budget)
+
+        #  prints limit 10000 and above
+        elif choice == 10:
+                print("**<<You are no longer on the main menu.>>**")
+                print("**<<Thank you for choosing pesa tracker.>>**")
+                
     
     
         
