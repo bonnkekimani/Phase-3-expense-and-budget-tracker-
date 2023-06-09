@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine, func
 from sqlalchemy.ext.declarative import declarative_base
-# from sqlalchemy.orm import relationship, backref
+from sqlalchemy.orm import relationship, backref
 from sqlalchemy import ForeignKey, Column, Integer, String 
 from sqlalchemy.orm import sessionmaker
 # create_engine('sqlite://tracker.db')
@@ -12,6 +12,8 @@ class Budget(Base):
     startDate = Column(String())
     endDate = Column(String())
     limit = Column(Integer())
+    users = relationship ('User', backref=backref('budget'))
+
     def __repr__(self):
         return f'Budget(id = {self.id})'+\
            f'budgetName= {self.budgetName}'+\
@@ -26,6 +28,7 @@ class User(Base):
     __tablename__ = 'users'
     id = Column (Integer(), primary_key=True)
     userName = Column(String())
+    budget_id = Column(Integer(), ForeignKey('budgets.id'))
     def __repr__(self):
         return f'User(id = {self.id})'+\
            f'userName={self.userName}'
@@ -115,34 +118,44 @@ if __name__ == '__main__':
 
     # Create Users(Instances)
     user1 = User(
-        userName = "Alvin"
+        userName = "Alvin",
+        budget_id = 1
         )
     user2 = User(
-        userName = "Olivia"
+        userName = "Olivia",
+        budget_id = 10
         )
     user3 = User(
-        userName = "Mia"
+        userName = "Mia",
+        budget_id = 8
         )
     user4 = User(
-        userName = "Noah"
+        userName = "Noah",
+        budget_id = 4
         )
     user5 = User(
-        userName = "Ava"
+        userName = "Ava",
+        budget_id = 7
         )
     user6 = User(
-        userName = "Sam"
+        userName = "Sam",
+        budget_id = 5
         )
     user7 = User(
-        userName = "Kai"
+        userName = "Kai",
+        budget_id = 2
         )
     user8 = User(
-        userName = "Evelyn"
+        userName = "Evelyn",
+        budget_id = 9
         )
     user9 = User(
-        userName = "Ethan"
+        userName = "Ethan",
+        budget_id = 3
         )
     user10 = User(
-        userName = "Emma"
+        userName = "Emma",
+        budget_id = 6
         )
     
     # Create Expenses(Instances)
