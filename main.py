@@ -220,7 +220,7 @@ def main ():
         print("6) Displays limit below 10000")
         print("7) Display limit 10000 and above")
         print("8) Outputs a list")
-        print("10) Quit")
+        print("10) Quit program")
         choice = int(input())
 
 
@@ -231,33 +231,35 @@ def main ():
             for budget in budgets:
                 print(budget.budgetName)
 
-        elif choice == 2:
+        if choice == 2:
             print("Displaying userName in Descending order  ...")
             budgets = session.query(Budget).first()
             for budget in budgets:
                 print(budget.budgetName)
     #   Lookup Expenses
-        elif choice == 3:
-            print("Fi ...")
-            budgets = session.query(Budget).first()
-            for budget in budgets:
-                print(budget.budgetName)
+        if choice == 3:
+            print("Looking Up Expenses...")
+            user_input = input("Enter expenseName:")
+            expenses = session.query(Expense).filter(Expense.expenseName == user_input)
+           
+            for Hitaji in expenses:
+              print (("Id:", Hitaji.id, "Name:", Hitaji.expenseName, "UserId", Hitaji.user_id, "BudgetId", Hitaji.budget_id))
 
         #  prints average limit
-        elif choice == 5:
+        if choice == 5:
             averageLimit = average_limit = session.query(func.avg(Budget.limit)).scalar()
             print("**<<Printing average limit>>**")
             print("THE AVERAGE LIMIT IS" + " " + str(averageLimit))
 
         #  prints limit below 10000
-        elif choice == 6:
+        if choice == 6:
             budgets = session.query(Budget).filter(Budget.limit < 10000)
             for budget in budgets:
                 print("**<<Printing limit below 10000>>**")
                 print(budget.budgetName)
     
         #  prints limit 10000 and above
-        elif choice == 7:
+        if choice == 7:
             budgets = session.query(Budget).filter(Budget.limit >= 10000)
             for budget in budgets:
                 print("**<<Printing limit 10000 and above>>**")
@@ -270,10 +272,11 @@ def main ():
         #         print("**<<Printing a list>>**")
         #         print(budget)
 
-        #  prints limit 10000 and above
+
+        #  Quiting program
         elif choice == 10:
                 print("**<<You are no longer on the main menu.>>**")
-                print("**<<Thank you for choosing pesa tracker.>>**")
+                print("**<<Thank you for choosing Pesa Tracker.>>**")
                 
     
     
