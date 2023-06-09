@@ -1,10 +1,8 @@
-import sqlite3
 from sqlalchemy import create_engine, func
 from sqlalchemy.ext.declarative import declarative_base
 # from sqlalchemy.orm import relationship, backref
 from sqlalchemy import ForeignKey, Column, Integer, String 
 from sqlalchemy.orm import sessionmaker
-# import datetime 
 # create_engine('sqlite://tracker.db')
 Base = declarative_base()
 class Budget(Base):
@@ -210,75 +208,73 @@ def main ():
     trackerList = []
 
     choice = 0
-    while choice !=10:
+    while choice !=7:
         print("**<<KARIBU||WELCOME TO PESA TRACKER PROGRAM>>**")
         print("1) Displays all budgetName in budgets")
         print("2) Displays all expenses ")
         print("3) Lookup Expenses")
-        print("4) Display Expenses")
-        print("5) Displays average limit")
-        print("6) Displays limit below 10000")
-        print("7) Display limit 10000 and above")
-        print("8) Outputs a list")
-        print("10) Quit program")
+        print("4) Displays average limit")
+        print("5) Displays limit below 10000")
+        print("6) Display limit 10000 and above")
+        print("7) Quit program")
         choice = int(input())
 
 
-    #   Prints all budgetName
+#   Prints all budgetName
         if choice == 1:
-            print("Displaying all budgetName  ...")
+            print("**<<Displaying all budgetName  ...>>**")
             budgets = session.query(Budget).all()
             for budget in budgets:
                 print(budget.budgetName)
 
-    #   Displays all expenses
-        if choice == 2:
-            print("<<Displaying all expenses  ...>>")
+#   Displays all expenses
+        elif choice == 2:
+            print("**<<Displaying all expenses  ...>>**")
             expenses = session.query(Expense).all()
             for expense in expenses:
                 print(expense.expenseName)
 
-    #   Lookup Expenses
-        if choice == 3:
-            print("Looking Up Expenses...")
+#   Lookup Expenses
+        elif choice == 3:
+            print("**<<Looking Up Expenses...>>**")
             user_input = input("Enter expenseName:")
             expenses = session.query(Expense).filter(Expense.expenseName == user_input)
            
             for Hitaji in expenses:
               print (("Id:", Hitaji.id, "Name:", Hitaji.expenseName, "UserId", Hitaji.user_id, "BudgetId", Hitaji.budget_id))
+            else:
+                print("**<<Incorrect expenseName: Check spelling or if expenseName does exist>>**")
 
-        #  prints average limit
-        if choice == 5:
+#  prints average limit
+        elif choice == 4:
             averageLimit = average_limit = session.query(func.avg(Budget.limit)).scalar()
             print("**<<Printing average limit>>**")
             print("THE AVERAGE LIMIT IS" + " " + str(averageLimit))
 
-        #  prints limit below 10000
-        if choice == 6:
+#  prints limit below 10000
+        elif choice == 5:
             budgets = session.query(Budget).filter(Budget.limit < 10000)
             for budget in budgets:
                 print("**<<Printing limit below 10000>>**")
                 print(budget.budgetName)
     
-        #  prints limit 10000 and above
-        if choice == 7:
+#  prints limit 10000 and above
+        elif choice == 6:
             budgets = session.query(Budget).filter(Budget.limit >= 10000)
             for budget in budgets:
                 print("**<<Printing limit 10000 and above>>**")
                 print(budget.budgetName)
-        #  Outputs a list
-        # if choice == 8:
-        #     budgets = session.query(Budget).all()
-        #     budgets.append([])
-        #     for budget in budgets:
-        #         print("**<<Printing a list>>**")
-        #         print(budget)
-
-
-        #  Quiting program
-        elif choice == 10:
+       
+#  Quiting program
+        elif choice == 7:
                 print("**<<You are no longer on the main menu.>>**")
                 print("**<<Thank you for choosing Pesa Tracker.>>**")
+                print("**<<Run the program again to get back to the main menu.>>**")
+
+#  Unrecognized input
+        else:
+                print("*<<Incorrect Input.>>**")
+                
                 
     
     
