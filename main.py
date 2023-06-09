@@ -220,21 +220,22 @@ def main ():
         choice = int(input())
 
 
-#   Prints all budgetName
+#   Prints a list of all budgetName
         if choice == 1:
-            print("**<<Displaying all budgetName  ...>>**")
+            print("**<<Displaying a list all budgetName  ...>>**")
             budgets = session.query(Budget).all()
             for budget in budgets:
-                print(budget.budgetName)
+                print([budget.budgetName])
 
 #   Displays all expenses
         elif choice == 2:
             print("**<<Displaying all expenses  ...>>**")
             expenses = session.query(Expense).all()
             for expense in expenses:
-                print(expense.expenseName)
+                print((expense.expenseName))
 
 #   Lookup Expenses
+#   Prints a Tuple
         elif choice == 3:
             print("**<<Looking Up Expenses...>>**")
             user_input = input("Enter expenseName:")
