@@ -213,7 +213,7 @@ def main ():
     while choice !=10:
         print("**<<KARIBU||WELCOME TO PESA TRACKER PROGRAM>>**")
         print("1) Displays all budgetName in budgets")
-        print("2) Display userName in users in Descending order")
+        print("2) Displays all expenses ")
         print("3) Lookup Expenses")
         print("4) Display Expenses")
         print("5) Displays average limit")
@@ -224,18 +224,20 @@ def main ():
         choice = int(input())
 
 
-    #   prints all budgetName
+    #   Prints all budgetName
         if choice == 1:
             print("Displaying all budgetName  ...")
             budgets = session.query(Budget).all()
             for budget in budgets:
                 print(budget.budgetName)
 
+    #   Displays all expenses
         if choice == 2:
-            print("Displaying userName in Descending order  ...")
-            budgets = session.query(Budget).first()
-            for budget in budgets:
-                print(budget.budgetName)
+            print("<<Displaying all expenses  ...>>")
+            expenses = session.query(Expense).all()
+            for expense in expenses:
+                print(expense.expenseName)
+
     #   Lookup Expenses
         if choice == 3:
             print("Looking Up Expenses...")
