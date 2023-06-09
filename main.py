@@ -210,7 +210,7 @@ def main ():
     choice = 0
     while choice !=7:
         print("**<<KARIBU||WELCOME TO PESA TRACKER PROGRAM>>**")
-        print("1) Displays all budgetName in budgets")
+        print("1) Displays budgets")
         print("2) Displays all expenses ")
         print("3) Lookup Expenses")
         print("4) Displays average limit")
@@ -222,10 +222,10 @@ def main ():
 
 #   Prints a list of all budgetName
         if choice == 1:
-            print("**<<Displaying a list all budgetName  ...>>**")
+            print("**<<Displaying a list of budgets  ...>>**")
             budgets = session.query(Budget).all()
             for budget in budgets:
-                print([budget.budgetName])
+                print(["Name", budget.budgetName, "Start Date", budget.startDate, "End Date", budget.endDate, "Limit", budget.limit])
 
 #   Displays all expenses
         elif choice == 2:
